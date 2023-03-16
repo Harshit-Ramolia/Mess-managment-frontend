@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box, Container } from "@mui/material";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import data from "./Sources";
+
+const router = createBrowserRouter(
+  Object.keys(data).map((page) => {
+    return {
+      path: data[page].path,
+      element: data[page].element,
+    };
+  })
+);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Container>
+        <Box sx={{ pt: 10 }}>
+          <RouterProvider router={router} />
+        </Box>
+      </Container>
+    </React.Fragment>
   );
 }
 
