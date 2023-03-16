@@ -25,7 +25,7 @@ function Menu() {
     },
     {
       itemName: "item5",
-      days: ["Monday", "Saturday"],
+      days: ["Monday"],
       slot: ["Breakfast", "Dinner"],
     },
   ]);
@@ -55,7 +55,15 @@ function Menu() {
             {days.map((day) => {
               return (
                 // <Grid item xs="auto">
-                <Paper sx={{ flexGrow: 1, maxWidth: 250, minWidth: 150 }}>
+                <Paper
+                  sx={{
+                    flexGrow: 1,
+                    maxWidth: 250,
+                    minWidth: 100,
+                    ml: 1,
+                    mr: 1,
+                  }}
+                >
                   <Typography
                     variant="h6"
                     align="center"
@@ -70,7 +78,7 @@ function Menu() {
                     )
                     .map((ele) => (
                       <Typography align="center" sx={{ border: 1, padding: 1 }}>
-                        asdf
+                        asdf asdf
                       </Typography>
                     ))}
                 </Paper>

@@ -6,7 +6,7 @@ const ListData = {
   blocks: [{ val1: "a", val2: "b" }],
 };
 
-function Student() {
+function Students() {
   return (
     <React.Fragment>
       Student
@@ -14,4 +14,4 @@ function Student() {
   );
 }
 
-export default Student;
+export default Students;
