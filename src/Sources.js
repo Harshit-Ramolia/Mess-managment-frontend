@@ -1,4 +1,5 @@
 import Home from "./pages/Home";
+import Menu from "./pages/Menu";
 import Mess from "./pages/Mess";
 import MessOne from "./pages/MessOne";
 import Student from "./pages/Student";
@@ -16,6 +17,11 @@ const data = {
         permission: 0,
       },
       {
+        name: "menu",
+        title: "Menu",
+        permission: 0,
+      },
+      {
         name: "mess",
         title: "Back",
         permission: 0,
@@ -26,6 +32,11 @@ const data = {
     path: "/messes/:messid/students",
     element: <Student />,
     relative: "./students",
+  },
+  menu: {
+    path: "/messes/:messid/menu",
+    element: <Menu />,
+    relative: "./menu",
   },
 };
 
