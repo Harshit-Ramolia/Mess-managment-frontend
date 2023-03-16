@@ -3,15 +3,15 @@ import Lists from "../components/Lists";
 
 const ListData = {
   title: "List of Messes",
-  blocks: [{ val1: "a", val2: "b", link: "./asd" }],
+  blocks: [{ val1: "a", val2: "b" }],
 };
 
-function Mess() {
+function Student() {
   return (
     <React.Fragment>
-      <Lists {...ListData} />
+      Student
     </React.Fragment>
   );
 }
 
-export default Mess;
+export default Student;

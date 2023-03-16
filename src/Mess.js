@@ -3,7 +3,7 @@ import Lists from "../components/Lists";
 
 const ListData = {
   title: "List of Messes",
-  blocks: [{ val1: "a", val2: "b", link: "./asd" }],
+  blocks: [{ val1: "a", val2: "b" }],
 };
 
 function Mess() {
