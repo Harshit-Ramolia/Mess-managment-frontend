@@ -6,12 +6,12 @@ function Menu() {
     {
       itemName: "item1",
       days: ["Monday", "Saturday"],
-      slot: ["Breakfast", "Dinner"],
+      slot: [ "Dinner"],
     },
     {
       itemName: "item2",
-      days: ["Monday", "Saturday"],
-      slot: ["Breakfast", "Dinner"],
+      days: ["Monday", "Tuesday"],
+      slot: ["Lunch", "Dinner"],
     },
     {
       itemName: "item3",
@@ -39,6 +39,7 @@ function Menu() {
     "Sunday",
   ];
   const slots = ["Breakfast", "Lunch", "Snacks", "Dinner"];
+
   return (
     <React.Fragment>
       {slots.map((slot) => (

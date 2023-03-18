@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Wrapper({ children }) {
   let location = useLocation();
@@ -8,14 +8,18 @@ function Wrapper({ children }) {
   return (
     <React.Fragment>
       {children}
-      {location.pathname != "/" && (
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Button variant="outlined" size="large">
-            <Link to=".." relative="path">Back</Link>
-          </Button>
-          <Button variant="outlined" size="large">
-            <Link to="/">Home</Link>
-          </Button>
+      {location.pathname !== "/" && (
+        <Box sx={{ display: "flex", justifyContent: "space-between", pt:2 }}>
+          <Link to=".." relative="path">
+            <Button variant="outlined" size="large">
+              Back
+            </Button>
+          </Link>
+          <Link to="/">
+            <Button variant="outlined" size="large">
+              Home
+            </Button>
+          </Link>
         </Box>
       )}
     </React.Fragment>
