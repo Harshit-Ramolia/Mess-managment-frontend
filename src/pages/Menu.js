@@ -6,7 +6,7 @@ function Menu() {
     {
       itemName: "item1",
       days: ["Monday", "Saturday"],
-      slot: [ "Dinner"],
+      slot: ["Dinner"],
     },
     {
       itemName: "item2",

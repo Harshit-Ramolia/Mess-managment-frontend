@@ -1,4 +1,5 @@
 import {
+  Button,
   CardActionArea,
   Paper,
   Table,
@@ -68,9 +69,13 @@ function Lists({ title, rows }) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <StyledTableRow>
-              {columns.map((col) => (
-                <StyledTableCell align="center">{col}</StyledTableCell>
-              ))}
+              {columns.map((col) =>
+                col != "link" ? (
+                  <StyledTableCell align="center">{col}</StyledTableCell>
+                ) : (
+                  <StyledTableCell align="center"></StyledTableCell>
+                )
+              )}
             </StyledTableRow>
           </TableHead>
           <TableBody>
@@ -84,7 +89,9 @@ function Lists({ title, rows }) {
                     <StyledTableCell align="center">{row[col]}</StyledTableCell>
                   ) : (
                     <StyledTableCell align="center">
-                      <Link to={row[col]} relative="path" >DETAIL</Link>
+                      <Link to={row[col]} relative="path">
+                        <Button variant="outlined">Detail</Button>
+                      </Link>
                     </StyledTableCell>
                   )
                 )}
