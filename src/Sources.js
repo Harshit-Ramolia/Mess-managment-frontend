@@ -30,6 +30,9 @@ const data = {
     element: <Students />,
     relative: "./students",
   },
+  student_edit: {
+    path: "students"
+  }
   // menu: {
   //   path: "/messes/:messid/menu",
   //   element: <Menu />,

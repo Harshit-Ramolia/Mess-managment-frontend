@@ -18,11 +18,12 @@ function Mess() {
   });
   useEffect(() => {
     axios.get(base_url + "/messes").then((response) => {
+      console.log(response.data);
       setData((prev) => ({
         title: "List of Messes",
         rows: response.data.map((ele) => ({
           ...ele,
-          link: `/students?mess_id=${ele["Mess ID"]}`,
+          link: `/students?mess_id=${ele["Mess Id"]}`,
         })),
       }));
     });
