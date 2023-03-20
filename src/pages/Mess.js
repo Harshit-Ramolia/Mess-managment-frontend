@@ -18,11 +18,15 @@ function Mess() {
   });
   useEffect(() => {
     axios.get(base_url + "/messes").then((response) => {
-      setData((prev) => ({ title: "List of Messes", rows: response.data.map(ele => ({...ele, link:`./${ele["Mess ID"]}`})) }));
-      console.log(response.data);
+      setData((prev) => ({
+        title: "List of Messes",
+        rows: response.data.map((ele) => ({
+          ...ele,
+          link: `/students?mess_id=${ele["Mess ID"]}`,
+        })),
+      }));
     });
   }, []);
-  console.log(data);
   return (
     <React.Fragment>
       <Lists {...data} />

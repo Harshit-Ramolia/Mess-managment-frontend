@@ -21,27 +21,10 @@ const data = {
     ],
   },
   mess: { path: "/messes", element: <Mess /> },
-  messid: {
-    path: "/messes/:messid",
-    element: <MessOne />,
-    // links: [
-    //   {
-    //     name: "menu",
-    //     title: "Current Menu",
-    //     permission: 0,
-    //   },
-    //   {
-    //     name: "students",
-    //     title: "List of students",
-    //     permission: 0,
-    //   },
-    //   {
-    //     name: "mess",
-    //     title: "Back",
-    //     permission: 0,
-    //   },
-    // ],
-  },
+  // messid: {
+  //   path: "/messes/:messid",
+  //   element: <MessOne />,
+  // },
   students: {
     path: "/students",
     element: <Students />,

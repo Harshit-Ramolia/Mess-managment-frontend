@@ -62,9 +62,6 @@ function Lists({ title, rows }) {
       <Typography variant="h3" align="center">
         {title}
       </Typography>
-      {/* {blocks.map((block) => (
-        <Block block={block} />
-      ))} */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

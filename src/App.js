@@ -16,11 +16,7 @@ const router = createBrowserRouter(
 function App() {
   return (
     <React.Fragment>
-      <Container>
-        <Box sx={{ pt: 10, pb: 10 }}>
-          <RouterProvider router={router}></RouterProvider>
-        </Box>
-      </Container>
+      <RouterProvider router={router}></RouterProvider>
     </React.Fragment>
   );
 }
