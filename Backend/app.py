@@ -292,6 +292,41 @@ class student_add(Resource):
 
 #         return(x.text)
 
+class mess_menu_get(Resource): #/api/mess_menu
+
+    def get(self):
+        cursor = mysql.connection.cursor()
+        #today = "monday"
+        # for testing purposes one set today to monday since we only data for three days in our DB
+        today = datetime.today()
+        today = today.strftime("%A").lower()
+
+        query = """SELECT ds.slot, mi.item_name, mi.price, mi.is_special, mi.protein, mi.calorie
+           FROM mess_item mi
+           JOIN menu mu ON mi.item_id = mu.item_id
+           JOIN day_slot ds ON mu.dayslot_id = ds.dayslot_id
+           WHERE ds.day_sl = %s"""
+        
+        cursor.execute(query,(today,))
+
+        rows = cursor.fetchall()
+        cursor.close()
+
+        # format rows as a list of dictionaries
+        menu_items = []
+        for row in rows:
+            menu_item = {
+                'slot': row[0],
+                'item_name': row[1],
+                'price': row[2],
+                'is_special': row[3],
+                'protein': row[4],
+                'calorie': row[5]
+            }
+            menu_items.append(menu_item)
+
+        return jsonify(menu_items)
+        
 # adding the defined resources along with their corresponding urls
 api.add_resource(student_get, '/api/students')
 api.add_resource(student_delete, '/api/students/delete')
@@ -299,6 +334,7 @@ api.add_resource(student_update, '/api/students/update')
 api.add_resource(student_add, '/api/students/add')
 api.add_resource(mess, '/api/messes')
 api.add_resource(return_auth, '/api/return_auth')
+api.add_resource(mess_menu_get, '/api/mess_menu')
 # api.add_resource(post_request, '/api/post_request')
 
 
