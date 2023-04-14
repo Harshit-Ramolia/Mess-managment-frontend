@@ -292,6 +292,94 @@ class student_add(Resource):
 
 #         return(x.text)
 
+class mess_menu_get(Resource): #/api/mess_menu
+
+    def get(self):
+        cursor = mysql.connection.cursor()
+        #today = "monday"
+        # for testing purposes one set today to monday since we only data for three days in our DB
+        today = datetime.today()
+        today = today.strftime("%A").lower()
+
+        query = """SELECT ds.slot, mi.item_name, mi.price, mi.is_special, mi.protein, mi.calorie
+           FROM mess_item mi
+           JOIN menu mu ON mi.item_id = mu.item_id
+           JOIN day_slot ds ON mu.dayslot_id = ds.dayslot_id
+           WHERE ds.day_sl = %s"""
+        
+        cursor.execute(query,(today,))
+
+        rows = cursor.fetchall()
+        cursor.close()
+
+        # format rows as a list of dictionaries
+        menu_items = []
+        for row in rows:
+            menu_item = {
+                'slot': row[0],
+                'item_name': row[1],
+                'price': row[2],
+                'is_special': row[3],
+                'protein': row[4],
+                'calorie': row[5]
+            }
+            menu_items.append(menu_item)
+
+        return jsonify(menu_items)
+    
+class guest_sales_get(Resource): #/api/guest_sales?mess_id={mess_id}
+
+    def get(self):
+        mess_id = request.args.get('mess_id')
+        cursor = mysql.connection.cursor()
+        query = """SELECT invoice_id, amount from guest_sales_receives where mess_id = %s"""
+        
+        cursor.execute(query,(mess_id,))
+
+        rows = cursor.fetchall()
+        cursor.close()
+
+        # format rows as a list of dictionaries
+        guest_sales_list = []
+        for row in rows:
+            guest_sale_inside = {
+                'invoice_id': row[0],
+                'amount': row[1],
+            }
+            guest_sales_list.append(guest_sale_inside)
+
+        return jsonify(guest_sales_list)
+    
+class balance_sheet_get(Resource): #/api/balance_sheet?mess_id={mess_id}
+
+    def get(self):
+        mess_id = request.args.get('mess_id')
+        cursor = mysql.connection.cursor()
+
+        query = """SELECT balance_id, from_student, from_guest, to_employee, to_vendor, miscellaneous, month, year from balance_sheet where mess_id = %s"""
+        
+        cursor.execute(query,(mess_id,))
+
+        rows = cursor.fetchall()
+        cursor.close()
+
+        # format rows as a list of dictionaries
+        balance_sheet_list = []
+        for row in rows:
+            balance_sheet_inside = {
+                'balance_id': row[0],
+                'from_student': row[1],
+                'from_guest': row[2],
+                'to_employee': row[3],
+                'to_vendor': row[4],
+                'miscellaneous': row[5],
+                'month': row[6],
+                'year': row[7],
+            }
+            balance_sheet_list.append(balance_sheet_inside)
+
+        return jsonify(balance_sheet_list)
+    
 # adding the defined resources along with their corresponding urls
 api.add_resource(student_get, '/api/students')
 api.add_resource(student_delete, '/api/students/delete')
@@ -299,6 +387,9 @@ api.add_resource(student_update, '/api/students/update')
 api.add_resource(student_add, '/api/students/add')
 api.add_resource(mess, '/api/messes')
 api.add_resource(return_auth, '/api/return_auth')
+api.add_resource(mess_menu_get, '/api/mess_menu')
+api.add_resource(guest_sales_get, '/api/guest_sales')
+api.add_resource(balance_sheet_get, '/api/balance_sheet')
 # api.add_resource(post_request, '/api/post_request')
 
 
