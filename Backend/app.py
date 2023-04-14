@@ -326,7 +326,30 @@ class mess_menu_get(Resource): #/api/mess_menu
             menu_items.append(menu_item)
 
         return jsonify(menu_items)
+    
+class guest_sales_get(Resource): #/api/guest_sales?mess_id={mess_id}
+
+    def get(self):
+        mess_id = request.args.get('mess_id')
+        cursor = mysql.connection.cursor()
+        query = """SELECT invoice_id, amount from guest_sales_receives where mess_id = %s"""
         
+        cursor.execute(query,(mess_id,))
+
+        rows = cursor.fetchall()
+        cursor.close()
+
+        # format rows as a list of dictionaries
+        guest_sales_list = []
+        for row in rows:
+            guest_sale_inside = {
+                'invoice_id': row[0],
+                'amount': row[1],
+            }
+            guest_sales_list.append(guest_sale_inside)
+
+        return jsonify(guest_sales_list)
+
 # adding the defined resources along with their corresponding urls
 api.add_resource(student_get, '/api/students')
 api.add_resource(student_delete, '/api/students/delete')
@@ -335,6 +358,7 @@ api.add_resource(student_add, '/api/students/add')
 api.add_resource(mess, '/api/messes')
 api.add_resource(return_auth, '/api/return_auth')
 api.add_resource(mess_menu_get, '/api/mess_menu')
+api.add_resource(guest_sales_get, '/api/guest_sales')
 # api.add_resource(post_request, '/api/post_request')
 
 
