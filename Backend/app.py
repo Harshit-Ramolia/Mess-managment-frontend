@@ -302,6 +302,7 @@ class inventory_details(Resource):
             d = {'inventory_id': item[0], 'mess_id': item[1], 'quantity': int(item[2]),
                  'type': item[3]}
             inventory_list.append(d)
+        mysql.connection.commit()
         return jsonify(inventory_list)
 
 
