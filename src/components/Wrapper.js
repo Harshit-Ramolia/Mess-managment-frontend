@@ -29,18 +29,19 @@ function Wrapper({ children }) {
   };
 
   const signin = (response) => {
-    const decode = jwt_decode(response["credential"]);
-    const newUser = decode;
-    console.log(newUser["email"]);
-    axios
-      .get(base_url + "/return_auth?email=" + newUser["email"])
-      .then((response) => {
-        console.log(response.data)
-        if (response.data != "Invalid mail id") {
-          setUser(response.data);
-          localStorage.setItem("user", response.data);
-        }
-      });
+    // const decode = jwt_decode(response["credential"]);
+    // const newUser = decode;
+    // console.log(newUser["email"]);
+    // axios
+    //   .get(base_url + "/return_auth?email=" + newUser["email"])
+    //   .then((response) => {
+    //     console.log(response.data)
+    //     if (response.data != "Invalid mail id") {
+    //       setUser(response.data);
+    //       localStorage.setItem("user", response.data);
+    //     }
+    //   });
+      localStorage.setItem("user", "Employee")
   };
   console.log(user);
   return (
@@ -48,15 +49,15 @@ function Wrapper({ children }) {
       {user ? (
         <>
           <Box backgroundColor="black" color="white" p={2} display="flex">
-            <Link to="/messes">
+            <Link to="/">
               <Button
                 sx={{ color: "white", borderColor: "white" }}
                 variant="outlined"
               >
-                List Of Messes
+                Home
               </Button>
             </Link>
-            <Box p={1} />
+            {/* <Box p={1} />
             <Link to="/students">
               <Button
                 sx={{ color: "white", borderColor: "white" }}
@@ -64,7 +65,7 @@ function Wrapper({ children }) {
               >
                 List Of Students
               </Button>
-            </Link>
+            </Link> */}
             <Box flexGrow={1} />
             <Typography sx={{ margin: "5px" }}>Loged In as {user}</Typography>
             <Button
